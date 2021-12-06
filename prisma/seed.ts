@@ -1,10 +1,22 @@
 import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
 const db = new PrismaClient();
 
 async function seed() {
+  console.log("seed executing");
+  const kody = await prisma.user.create({
+    data: {
+      username: "kody",
+      // this is a hashed version of "twixrox"
+      passwordHash:
+        "$2b$10$K7L1OJ45/4Y2nIvhRVpCe.FSmhDdWoXehVzJptJ/op0lSsvqNu/1u",
+    },
+  });
   await Promise.all(
     getJokes().map((joke) => {
-      return db.joke.create({ data: joke });
+      const data = { jokesterId: kody.id, ...joke };
+      return prisma.joke.create({ data });
     })
   );
 }
