@@ -1,4 +1,7 @@
-# Welcome to Remix!
+# Remix Jokes App!
+The app we built along this youtube [Video Tutorial](https://youtu.be/KFvHjvry068)
+
+## Docs
 
 - [Remix Docs](https://remix.run/docs)
 
